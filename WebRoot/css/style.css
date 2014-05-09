@@ -1,0 +1,23 @@
+.title {
+	color: #fff !important;
+	font-size: 25px !important;
+}
+
+.code-input {
+	width: 750px;
+	margin: 0 auto;
+}
+
+body {
+	background-color: #eee !important;
+}
+
+.footer {
+	text-align: center;
+	color: #fff !important;
+	padding-top: 20px;
+	width: 100%;
+	position: absolute !important;
+	bottom: 0;
+	margin-bottom: 0 !important;
+}

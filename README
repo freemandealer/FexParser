@@ -1,0 +1,4 @@
+#FexParser
+FexParser is Freeman's tex parsing web application.It can be use to parser Simtex(Freeman's simple tex) to HTML and PDF. In the furture, it could be extended to support markdown syntax and Later.
+
+It is originally intended to be the course design for JavaEE and exercises for Compiling Principle.
