@@ -6,22 +6,36 @@
 <title>FexParser</title>
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/bootstrap.min.css">
+<%@ page import="com.freeman.fexparser.parser.*"%>
 <%@ page import="com.freeman.fexparser.parser.simtex.*"%>
+<%@ page import="com.freeman.fexparser.parser.markdown.*"%>
 </head>
 
 <%
 	String str;
+	String lang_choice;
+	Parser parser;
+
 	str = request.getParameter("rawcodes");
 	if (str != null) {
-		str = Compiler.parse(str);
-			if (true) {
+		/* Switch language */
+		lang_choice = request.getParameter("language").trim();
+		if (lang_choice.equals("SimTex")) {
+			parser = new Compiler();
+		} else if (lang_choice.equals("MarkDown")) {
+			parser = new MarkdownParser();
+		} else {
+			parser = null;
+			System.out.println("OOOOOOOOO error");
+		}
+		str = parser.parse(str);
+		if (true) {
 			request.setAttribute("htmlcodes", str);
 %>
-<jsp:forward page="parseok.jsp"/>
+<jsp:forward page="parseok.jsp" />
 <%
 	}
 	}
-
 %>
 
 
@@ -38,9 +52,9 @@
 				</div>
 				<div class="row">
 					<div class="form-group col-xs-2 col-xs-offset-2">
-						<select class="form-control">
+						<select class="form-control" name="language">
 							<option>SimTex</option>
-							<option>MarkDown(not available)</option>
+							<option>MarkDown</option>
 							<option>LaTex(not available)</option>
 						</select>
 					</div>
@@ -56,7 +70,7 @@
 	<nav class="navbar navbar-inverse footer" role="navigation">
 		&copy;&nbsp;<a href="http://freemandealer.github.io">Freeman Zhang</a><br>
 		FexParser is Freeman's Tex Parser, a Course Design for JavaEE@NUIST
-		</nav>
+	</nav>
 
 </body>
 <script src="js/bootstrap.min.js"></script>

@@ -2,6 +2,8 @@ package com.freeman.fexparser.parser.simtex;
 
 import java.io.IOException;
 
+import com.freeman.fexparser.parser.Parser;
+
 /**
  * <p>
  * The main class of the program. Used as a driver for the lexical, syntax, and
@@ -15,7 +17,7 @@ import java.io.IOException;
  * 
  * @author Freeman Zhang
  */
-public class Compiler {
+public class Compiler extends Parser{
 
 	public static final ParseTree tree = new ParseTree();
 	private static final SyntaxAnalyzer syntax = new SyntaxAnalyzer();
@@ -24,14 +26,14 @@ public class Compiler {
 	public static String htmlString = "";
 	private static SemanticAnalyzer semant;
 
-	public static String parse(String contents) {
+	public String parse(String contents) {
 
 		StringBuffer sb = new StringBuffer(contents);
 		int index13;
 		/**
 		 * Sigh.. Index13 points to real daemons! In ANSI, '\n'(0xA) is the end
 		 * of the line. Our parser works well. However, textarea of HTML gives
-		 * us '\n\r'(0xAD), which confuses our parser. But don't worry, I'll
+		 * us '\n\r'(0xA,0xD), which confuses our parser. But don't worry, I'll
 		 * delete them.
 		 */
 		while (true) {
